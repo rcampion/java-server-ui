@@ -1,0 +1,37 @@
+<section fxLayout="row wrap" fxLayoutAlign="center center">
+  <mat-card fxFlex="90%" fxFlex.xs="100%">
+    <mat-card-title>Create a new Book</mat-card-title>
+    <form [formGroup]="bookForm" autocomplete="off" novalidate (ngSubmit)="createBook(bookForm.value)" fxLayout="column wrap"
+      fxLayoutAlign="center center" fxLayoutGap="10px">
+      <mat-card-content>
+
+<br/>
+        <mat-form-field>
+          <input matInput type="text" placeholder="Book Title" formControlName="title" id="title">
+          <mat-hint align="end">Not more then 120 characters long.</mat-hint>
+          <mat-error *ngIf="hasError('title', 'required')">Title is required</mat-error>
+          <mat-error *ngIf="hasError('title', 'maxlength')">You have more than 120 characters</mat-error>
+        </mat-form-field>
+ <br/>       
+        <mat-form-field>
+          <input matInput type="text" placeholder="Author" formControlName="author" id="author">
+          <mat-hint align="end">Not more then 120 characters long.</mat-hint>
+          <mat-error *ngIf="hasError('author', 'required')">Author is required</mat-error>
+          <mat-error *ngIf="hasError('author', 'maxlength')">You have more than 120 characters</mat-error>
+        </mat-form-field>
+ <br/>       
+        <mat-form-field>
+          <input matInput type="text" placeholder="Category" formControlName="category" id="category">
+          <mat-hint align="end">Not more then 120 characters long.</mat-hint>
+          <mat-error *ngIf="hasError('category', 'required')">Category is required</mat-error>
+          <mat-error *ngIf="hasError('category', 'maxlength')">You have more than 120 characters</mat-error>
+        </mat-form-field>
+
+      </mat-card-content>
+      <mat-card-actions align="start">
+        <button mat-raised-button color="primary" [disabled]="!bookForm.valid">Create</button>
+        <button type="button" mat-raised-button color="warn" (click)="onCancel()">Cancel</button>
+      </mat-card-actions>
+    </form>
+  </mat-card>
+</section>
