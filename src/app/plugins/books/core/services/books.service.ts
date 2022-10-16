@@ -78,9 +78,7 @@ export class BooksService {
             params: new HttpParams()
 
                 .set('search', search)
-
                 .set('sort', sortTest)
-
                 .set('page', pageNumber.toString())
                 .set('size', pageSize.toString())
 
