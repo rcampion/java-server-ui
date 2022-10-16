@@ -12,55 +12,55 @@ import { AngularLogService } from '../../../../base/core/services/angular-log.se
 
 export class BooksDataSource implements DataSource<Book> {
 
-    private booksSubject = new BehaviorSubject<Book[]>([]);
+	private booksSubject = new BehaviorSubject<Book[]>([]);
 
-    private loadingSubject = new BehaviorSubject<boolean>(false);
+	private loadingSubject = new BehaviorSubject<boolean>(false);
 
-    public loading$ = this.loadingSubject.asObservable();
+	public loading$ = this.loadingSubject.asObservable();
 
-    public paginationPage: Object;
+	public paginationPage: Object;
 
-    public total = 0;
+	public total = 0;
 
-    constructor(private booksService: BooksService) {
+	constructor(private booksService: BooksService) {
 
-    }
+	}
 
-    loadBooks(
-        filter: string,
-        sortProperty: string,
-        sortDirection: string,
-        pageIndex: number,
-        pageSize: number) {
+	loadBooks(
+		filter: string,
+		sortProperty: string,
+		sortDirection: string,
+		pageIndex: number,
+		pageSize: number) {
 
-        this.loadingSubject.next(true);
+		this.loadingSubject.next(true);
 
-        const sort = new PaginationPropertySort();
-        sort.property = sortProperty;
-        sort.direction = sortDirection;
+		const sort = new PaginationPropertySort();
+		sort.property = sortProperty;
+		sort.direction = sortDirection;
 
-        this.booksService.findBooksWithSortAndFilter(filter, sort,
-            pageIndex, pageSize).pipe(
-                catchError(() => of([])),
-                finalize(() => this.loadingSubject.next(false))
-            )
-            .subscribe(response => {
+		this.booksService.findBooksWithSortAndFilter(filter, sort,
+			pageIndex, pageSize).pipe(
+				catchError(() => of([])),
+				finalize(() => this.loadingSubject.next(false))
+			)
+			.subscribe(response => {
 				console.log("response:" + response);
-                this.booksSubject.next(response);
-                //this.total = response.totalElements;
-            }
-            );
-    }
+				this.booksSubject.next(response.content);
+				this.total = response.totalElements;
+			}
+			);
+	}
 
-    connect(collectionViewer: CollectionViewer): Observable<Book[]> {
-        //console.log('Connecting data source');
-        return this.booksSubject.asObservable();
-    }
+	connect(collectionViewer: CollectionViewer): Observable<Book[]> {
+		//console.log('Connecting data source');
+		return this.booksSubject.asObservable();
+	}
 
-    disconnect(collectionViewer: CollectionViewer): void {
-        this.booksSubject.complete();
-        this.loadingSubject.complete();
-    }
+	disconnect(collectionViewer: CollectionViewer): void {
+		this.booksSubject.complete();
+		this.loadingSubject.complete();
+	}
 
 }
 
