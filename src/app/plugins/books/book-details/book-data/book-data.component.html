@@ -5,21 +5,40 @@
 		<p-panel> 
 		<mat-card-content>
 
-			<div fxLayout="column wrap" fxLayoutGap="40px">
-<!--  
-				<div fxLayout="row wrap" fxFlex>
-					<div fxFlex>
-						<strong>Book name:</strong>
+		<div fxLayout="column wrap" fxLayoutAlign="center start">
+
+				<div fxLayout="row" fxFlex>
+					<div>
+						<strong>Book Id:</strong>
 					</div>
-					<div fxFlex>{{book?.description}}</div>
+					&nbsp;
+					<div>{{book?.id}}</div>
 				</div>
--->
-				<div fxLayout="row wrap" fxFlex>
-					<div fxFlex>
-						<strong>Book title:</strong>
+				
+				<div fxLayout="row" fxFlex>
+					<div>
+						<strong>Book Title:</strong>
 					</div>
-					<div fxFlex>{{book?.title}}</div>
+					&nbsp;
+					<div>{{book?.title}}</div>
 				</div>
+				
+				<div fxLayout="row" fxFlex>
+					<div>
+						<strong>Book Author:</strong>
+					</div>
+					&nbsp;
+					<div>{{book?.author}}</div>
+				</div>
+				
+				<div fxLayout="row" fxFlex>
+					<div>
+						<strong>Book Category:</strong>
+					</div>
+					&nbsp;
+					<div>{{book?.category}}</div>
+				</div>
+				
 			</div>
 			</mat-card-content> 
 			
