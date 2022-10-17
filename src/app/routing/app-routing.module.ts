@@ -14,6 +14,10 @@ import { ErrorComponent } from '../base/error/error.component';
 // import { PasswordComponent } from '../password/password.component';
 
 const routes: Routes = [
+	
+	{ path: '',
+        loadChildren: () => import("./../plugins/books/books.module").then(m => m.BooksModule) },
+
     { path: 'about', component: AboutComponent },
 //    { path: 'register', component: RegistrationComponent },
 //    { path: 'authenticate', component: LoginComponent },
