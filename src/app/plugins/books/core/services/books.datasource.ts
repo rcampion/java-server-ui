@@ -45,7 +45,7 @@ export class BooksDataSource implements DataSource<Book> {
 				finalize(() => this.loadingSubject.next(false))
 			)
 			.subscribe(response => {
-				console.log("response:" + response);
+				//console.log("response:" + response);
 				this.booksSubject.next(response.content);
 				this.total = response.totalElements;
 			}
